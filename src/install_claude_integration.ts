@@ -211,7 +211,7 @@ export function installClaudeIntegration(projectRoot: string, options: InstallOp
   };
 }
 
-export async function installClaudeIntegrationInteractive(projectRoot?: string): Promise<InstallResult> {
+export async function installClaudeIntegrationInteractive(projectRoot?: string, options: InstallOptions = {}): Promise<InstallResult> {
   printSection('📦 typedoc-plugin-file-overview Installer');
 
   const targetDir = projectRoot ?? process.cwd();
@@ -263,6 +263,7 @@ export async function installClaudeIntegrationInteractive(projectRoot?: string):
   printSection('⚙️ Installing...');
 
   const result = installClaudeIntegration(targetDir, {
+    force: options.force,
     confirm: (question: string) => {
       if (question.includes('Merge')) {
         return readBooleanAnswer(response.merge, false);

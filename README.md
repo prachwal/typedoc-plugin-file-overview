@@ -182,12 +182,23 @@ Run the installer interactively:
 npx typedoc-plugin-file-overview-install [project-directory]
 ```
 
+Reinstall (overwrite existing files):
+
+```bash
+npx typedoc-plugin-file-overview-install --force
+```
+
 The installer displays:
 
 - Installation steps with visual indicators (✓, ℹ, ⚠)
 - Colored output for better readability
 - Interactive prompts asking whether to merge or create settings
 - Final summary with paths and next steps
+
+Options:
+
+- `--force`, `-f` — Overwrite existing prompt-enhancer and instructions
+- `--help`, `-h` — Show usage information
 
 ### Manual installation
 
