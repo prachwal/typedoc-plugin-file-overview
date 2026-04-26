@@ -23,3 +23,7 @@ Rules:
 - if a file already has a header, normalize it instead of adding a second one
 
 When updating an existing file, preserve the current intent of the header and only correct the format when needed.
+
+## Token efficiency
+
+The prompt-enhancer hook injects only the TSDoc header block (path, summary, feature, side effects) for any `.ts` / `.tsx` file mentioned in your prompt. The full file body is **not** sent automatically — use the `Read` tool when the header summary is insufficient for the task.

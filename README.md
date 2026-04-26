@@ -97,6 +97,14 @@ See:
 - [src/prompt-enhancer.ts](./src/prompt-enhancer.ts)
 - [src/install_claude_integration.ts](./src/install_claude_integration.ts)
 
+## Token efficiency
+
+The prompt-enhancer detects `.ts` / `.tsx` paths mentioned in the user prompt and injects **only the TSDoc header** (path, summary, feature, side effects) into Claude's context — not the full file body. This typically reduces per-file context cost from ~500–2000 tokens down to ~50–80 tokens.
+
+If the header summary is not enough, Claude can fetch the full content on demand using the built-in `Read` tool. There is no separate retrieval mechanism — the model decides when richer context is required.
+
+The hook matcher (`"\\.(ts|tsx)$"`) ensures the enhancer fires reliably for TypeScript edits without depending on prompt keywords.
+
 ## Claude hook example
 
 If you use Claude Code hooks, you can add a prompt-enrichment hook that nudges edits toward this file header format.

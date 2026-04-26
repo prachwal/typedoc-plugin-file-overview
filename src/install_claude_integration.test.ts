@@ -85,7 +85,7 @@ describe('Claude installer example', () => {
       expect(result.created).toBe(true);
       expect(readFileSync(result.settingsPath, 'utf8')).toContain('UserPromptSubmit');
       expect(result.promptEnhancerPath).toContain('prompt-enhancer.js');
-      expect(readFileSync(result.promptEnhancerPath, 'utf8')).toContain('shouldEnhancePrompt');
+      expect(readFileSync(result.promptEnhancerPath, 'utf8')).toContain('buildPromptEnhancerOutput');
     } finally {
       rmSync(targetDir, { force: true, recursive: true });
     }
