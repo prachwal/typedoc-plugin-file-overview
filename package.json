@@ -1,0 +1,36 @@
+{
+  "name": "typedoc-plugin-file-overview",
+  "version": "0.1.0",
+  "description": "TypeDoc plugin that renders structured file-level metadata blocks into markdown output.",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "test": "vitest run --config vitest.config.ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "typedoc",
+    "typedoc-plugin",
+    "markdown",
+    "documentation",
+    "tsdoc"
+  ],
+  "peerDependencies": {
+    "typedoc": "^0.28.0",
+    "typedoc-plugin-markdown": "^4.11.0"
+  }
+}

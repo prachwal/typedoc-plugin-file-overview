@@ -1,0 +1,20 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/.claude/bin/prompt-enhancer.js"
+          }
+        ]
+      }
+    ]
+  },
+  "instructions": [
+    "Load .claude/instructions/file-header-policy.md as repository guidance for TypeScript file edits under src/.",
+    "When editing a TypeScript module in src/, keep a file-level TSDoc block with @file, @summary, @feature, and @sideEffects.",
+    "Preserve an existing header shape and normalize values instead of creating a second header block."
+  ]
+}

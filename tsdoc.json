@@ -1,0 +1,21 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/tsdoc/v0/tsdoc.schema.json",
+  "tagDefinitions": [
+    {
+      "tagName": "@file",
+      "syntaxKind": "block"
+    },
+    {
+      "tagName": "@summary",
+      "syntaxKind": "block"
+    },
+    {
+      "tagName": "@feature",
+      "syntaxKind": "block"
+    },
+    {
+      "tagName": "@sideEffects",
+      "syntaxKind": "block"
+    }
+  ]
+}
