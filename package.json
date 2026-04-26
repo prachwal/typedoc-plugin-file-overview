@@ -6,6 +6,9 @@
   "type": "module",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "bin": {
+    "typedoc-plugin-file-overview-install": "./dist/cli.js"
+  },
   "exports": {
     ".": {
       "types": "./dist/index.d.ts",
@@ -19,6 +22,7 @@
   },
   "files": [
     "dist",
+    "examples",
     "README.md",
     "LICENSE"
   ],
@@ -29,8 +33,14 @@
     "documentation",
     "tsdoc"
   ],
+  "dependencies": {
+    "prompts": "^2.4.2"
+  },
   "peerDependencies": {
     "typedoc": "^0.28.0",
     "typedoc-plugin-markdown": "^4.11.0"
+  },
+  "devDependencies": {
+    "@types/prompts": "^2.4.9"
   }
 }

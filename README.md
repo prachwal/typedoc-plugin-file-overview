@@ -101,7 +101,7 @@ See:
 
 If you use Claude Code hooks, you can add a prompt-enrichment hook that nudges edits toward this file header format.
 
-Example `.claude/settings.json` fragment:
+Example `.claude/settings.json` fragment (runs on all files):
 
 ```json
 {
@@ -109,6 +109,26 @@ Example `.claude/settings.json` fragment:
     "UserPromptSubmit": [
       {
         "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node $CLAUDE_PROJECT_DIR/.claude/bin/prompt-enhancer.js"
+          }
+        ]
+      }
+    ]
+  }
+}
+```
+
+To run only on `.ts` and `.tsx` files, use a regex matcher:
+
+```json
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "\\.(ts|tsx)$",
         "hooks": [
           {
             "type": "command",
@@ -138,16 +158,51 @@ If the file already has a header, preserve and normalize it instead of inventing
 
 ## Claude installer
 
-The package also ships with a small installer for Claude Code integration.
-The installer example is implemented in TypeScript under `src/` and installs a `.js` hook file from the package build output.
+The package ships with an interactive installer for Claude Code integration.
 
-It writes:
+### Interactive CLI
+
+Check installation status:
+
+```bash
+npx typedoc-plugin-file-overview-install status
+```
+
+Run the installer interactively:
+
+```bash
+npx typedoc-plugin-file-overview-install [project-directory]
+```
+
+The installer displays:
+
+- Installation steps with visual indicators (✓, ℹ, ⚠)
+- Colored output for better readability
+- Interactive prompts asking whether to merge or create settings
+- Final summary with paths and next steps
+
+### Manual installation
+
+You can also import and use the installer programmatically:
+
+```ts
+import { installClaudeIntegration } from 'typedoc-plugin-file-overview';
+
+const result = installClaudeIntegration('./my-project', {
+  confirm: (question, defaultValue) => {
+    // return true/false based on your logic
+    return defaultValue;
+  }
+});
+```
+
+The installer writes:
 
 - `.claude/bin/prompt-enhancer.js`
 - `.claude/instructions/file-header-policy.md`
 - `.claude/settings.json` (or merges into existing)
 
-If `.claude/settings.json` already exists, the installer opens a simple console prompt and asks whether it should merge the hook and instruction entries into that file.
+If `.claude/settings.json` already exists, the installer asks whether to merge the hook and instruction entries into that file.
 
 ## Notes
 
