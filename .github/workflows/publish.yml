@@ -9,6 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    defaults:
+      run:
+        working-directory: packages/typedoc-plugin-file-overview
     steps:
       - uses: actions/checkout@v4
 
@@ -21,7 +24,7 @@ jobs:
         with:
           version: 9
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
       - run: pnpm typecheck
       - run: pnpm test
       - run: pnpm build
