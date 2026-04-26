@@ -36,4 +36,4 @@ jobs:
           pnpm version minor --no-git-tag-version
           git add package.json
           git commit -m "Bump version to $(node -p "require('./package.json').version")"
-          git push
+          git push origin HEAD:main
