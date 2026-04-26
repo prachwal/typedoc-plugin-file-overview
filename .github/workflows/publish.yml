@@ -17,19 +17,23 @@ jobs:
           node-version: 20
           registry-url: https://registry.npmjs.org/
 
-      - run: npm ci
-      - run: npm run typecheck
-      - run: npm run test
-      - run: npm run build
+      - uses: pnpm/action-setup@v2
+        with:
+          version: 9
 
-      - run: npm publish
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm typecheck
+      - run: pnpm test
+      - run: pnpm build
+
+      - run: pnpm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          npm version minor --no-git-tag-version
+          pnpm version minor --no-git-tag-version
           git add package.json
           git commit -m "Bump version to $(node -p "require('./package.json').version")"
           git push
