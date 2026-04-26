@@ -7,7 +7,7 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "typedoc-plugin-file-overview-install": "./dist/cli.js"
+    "typedoc-plugin-file-overview-install": "dist/cli.js"
   },
   "exports": {
     ".": {
